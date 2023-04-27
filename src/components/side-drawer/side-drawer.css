@@ -11,7 +11,7 @@ aside {
 }
 
 /* only works w/ shadow dom - if i put scope as true, you would use normal component selector */
-:host([open]) aside {
+:host([opened]) aside {
     left: 0;
 }
 
@@ -59,9 +59,16 @@ header button:focus {
     padding: 0.15rem 0;
 }
 
-#tabs button.active,
 #tabs button:hover,
 #tabs button.active {
     background: black;
     color: white;
+}
+
+#tabs button:focus {
+    outline: none;
+}
+
+#contact-information {
+    padding: 0 1rem;
 }

@@ -1,4 +1,4 @@
-import { Component, Prop, h } from '@stencil/core';
+import { Component, Prop, h, State, Method } from '@stencil/core';
 
 @Component({
     tag: 'uc-side-drawer',
@@ -7,16 +7,28 @@ import { Component, Prop, h } from '@stencil/core';
 })
 
 export class SideDrawer {
+    @State() showContactInfo = false;
+
     @Prop({reflect: true}) title: string;
-    @Prop({reflect: true, mutable: true}) open: boolean;
+    @Prop({reflect: true, mutable: true}) opened: boolean;
 
     onCloseDrawer() {
-        this.open = false;
+        this.opened = false;
+    }
+
+    onContentChange(content: string) {
+        console.log(content);
+        this.showContactInfo = content === 'contact'
+    }
+
+    @Method()
+    open() {
+        this.opened = true;
     }
 
     render() {
         // let content = null;
-        // if(this.open) {
+        // if(this.opened) {
         //     content = (
         //         <aside>   
         //             <header><h1>{this.title}</h1></header>
@@ -26,22 +38,21 @@ export class SideDrawer {
         //         </aside>
         //     )
         // }
-
-        let mainContent = <slot />
-        mainContent = (
-            <div>
-            <h2>Contact Information</h2>
-            <p>You can reach us via phone or email.</p>
-            <ul>
-                <li>Phone: 555-555-5555</li>
-                <li>
-                    Email: {' '}
-                    <a href="mailto:something@something.com">testemail@testemail.com</a>
-                </li>
-            </ul>
-            </div>
-        );
-        
+        let mainContent = <slot />;
+        if(this.showContactInfo) {
+            mainContent = (
+                <div>
+                <h2>Contact Information</h2>
+                <p>You can reach us via phone or email.</p>
+                <ul>
+                    <li>Phone: 555-555-5555</li>
+                    <li>Email: {' '}
+                        <a href="mailto:something@something.com">testemail@testemail.com</a>
+                    </li>
+                </ul>
+                </div>
+            );
+        }
         
         return (
             <aside>   
@@ -50,11 +61,19 @@ export class SideDrawer {
                     <button onClick={this.onCloseDrawer.bind(this)}>X</button>
                 </header>
                 <section id="tabs">
-                    <button class="active">Navigation</button>
-                    <button>Contact</button>
+                    <button
+                        class={!this.showContactInfo ? 'active' : ''}
+                        onClick={this.onContentChange.bind(this, 'nav')}>
+                        Navigation
+                    </button>
+                    <button 
+                        class={!this.showContactInfo ? 'active' : ''}
+                        onClick={this.onContentChange.bind(this, 'contact')}>
+                        Contact
+                    </button>
                 </section>
                 <main>
-                    <slot />
+                    {mainContent}
                 </main>
             </aside>
         );
