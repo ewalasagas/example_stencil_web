@@ -1,7 +1,7 @@
 import { Component, Prop, h, State, Method } from '@stencil/core';
 
 @Component({
-    tag: 'uc-side-drawer',
+    tag: 'side-drawer',
     styleUrl: './side-drawer.css',
     shadow: true
 })

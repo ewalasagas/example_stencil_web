@@ -1,7 +1,7 @@
 import { Component, h, State, Prop} from '@stencil/core';
 
 @Component({
-    tag: 'uc-tooltip',
+    tag: 'tooltip',
     styleUrl: './tooltip.css',
     shadow: true
 })
