@@ -7,15 +7,49 @@
 
     <script type="module" src="/build/plainjs.esm.js"></script>
     <script nomodule src="/build/plainjs.js"></script>
+    <style>
+      body {
+        font-family: sans-serif;
+      }
+
+      .side-nav ul {
+        list-style: none;
+      }
+
+      .side-nav li {
+        margin: 1rem 0;
+      }
+
+      .side-nav a {
+        text-decoration: none;
+        color: rgb(10, 134, 93);
+      }
+      
+    </style>
   </head>
   <body>
-    <uc-side-drawer title="Main Menu"></uc-side-drawer>
-    <my-component first="Stencil" last="'Don't call me a framework' JS"></my-component>
-  
+    <button id="side-drawer-button">Open Side Menu</button>
+    <uc-side-drawer title="Main Menu">
+      <nav class="side-nav">
+        <ul>
+          <li><a href="/">A Link</a></li>
+          <li><a href="/">Another Link</a></li>
+          <li><a href="/">A Third Link</a></li>
+        </ul>
+      </nav>
+    </uc-side-drawer>
+
     <script>
+      const sideDrawerButton = document.querySelector('#side-drawer-button');
       const sideDrawer = document.querySelector('uc-side-drawer');
+      sideDrawerButton.addEventListener('click', () => {
+        if(!sideDrawer.open) {
+          console.log('Opening side drawer...')
+          sideDrawer.open = true;
+        }
+      })
       setTimeout(() => {
-        sideDrawer.title = 'It changed!';
+        <!-- sideDrawer.title = 'It changed!'; -->
       }, 3000);
     </script>
   </body>
