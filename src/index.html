@@ -29,7 +29,7 @@
   </head>
   <body>
     <button id="side-drawer-button">☰</button>
-    <uc-side-drawer title="Main Menu">
+    <my-side-drawer title="Main Menu">
       <nav class="side-nav">
         <ul>
           <li><a href="/">A Link</a></li>
@@ -37,13 +37,13 @@
           <li><a href="/">A Third Link</a></li>
         </ul>
       </nav>
-    </uc-side-drawer>
+    </my-side-drawer>
 
-    <p>Let's test this new<uc-tooltip tip="I'm a tooltip!">Tooltip!</uc-tooltip></p>
+    <p>Let's test this new<my-tooltip tip="I'm a tooltip!">Tooltip!</my-tooltip></p>
 
     <script>
       const sideDrawerButton = document.querySelector('#side-drawer-button');
-      const sideDrawer = document.querySelector('uc-side-drawer');
+      const sideDrawer = document.querySelector('my-side-drawer');
       sideDrawerButton.addEventListener('click', () => {
         if(!sideDrawer.opened) {
           console.log('Opening side drawer...')
