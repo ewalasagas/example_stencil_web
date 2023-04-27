@@ -1,4 +1,4 @@
-import { Component, h} from '@stencil/core';
+import { Component, h, State} from '@stencil/core';
 
 @Component({
     tag: 'uc-tooltip',
@@ -7,13 +7,21 @@ import { Component, h} from '@stencil/core';
 })
 
 export class ToolTip {
-    // @Prop({reflect: true}) tip: string;
+    @State() tooltipVisible = false;
+
+    onToggleTooltip() {
+        this.tooltipVisible = !this.tooltipVisible;
+    }
 
     render() {
+        let tooltip = null;
+        if(this.tooltipVisible) {
+            tooltip = <div id="tooltip-text">This is a the tooltip text!</div>
+        }
         return [
             <slot />,
-            <span id="tooltip-icon">?</span>,
-            <div id="tooltip-text"></div>
+            <span id="tooltip-icon" onClick={this.onToggleTooltip.bind(this)}>?</span>,
+            tooltip
         ];
     }
 };
