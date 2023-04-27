@@ -54,7 +54,8 @@ export class SideDrawer {
             );
         }
         
-        return (
+        return [
+            <div class="backdrop" onClick={this.onCloseDrawer.bind(this)}></div>,
             <aside>   
                 <header>
                     <h1>{this.title}</h1>
@@ -67,7 +68,7 @@ export class SideDrawer {
                         Navigation
                     </button>
                     <button 
-                        class={!this.showContactInfo ? 'active' : ''}
+                        class={!this.showContactInfo ? '' : 'active'}
                         onClick={this.onContentChange.bind(this, 'contact')}>
                         Contact
                     </button>
@@ -76,6 +77,6 @@ export class SideDrawer {
                     {mainContent}
                 </main>
             </aside>
-        );
+        ];
     }
 }
