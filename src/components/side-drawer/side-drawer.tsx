@@ -9,7 +9,7 @@ import { Component, Prop, h, State, Method } from '@stencil/core';
 export class SideDrawer {
     @State() showContactInfo = false;
 
-    @Prop({reflect: true}) menutitle: string;
+    @Prop({reflect: true}) title: string;
     @Prop({reflect: true, mutable: true}) opened: boolean;
 
     onCloseDrawer() {
@@ -58,7 +58,7 @@ export class SideDrawer {
             <div class="backdrop" onClick={this.onCloseDrawer.bind(this)}></div>,
             <aside>   
                 <header>
-                    <h1>{this.menutitle}</h1>
+                    <h1>{this.title}</h1>
                     <button onClick={this.onCloseDrawer.bind(this)}>X</button>
                 </header>
                 <section id="tabs">
